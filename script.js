@@ -1,4 +1,50 @@
 /* =========================
+   INDEXED DB
+========================= */
+
+let db;
+
+const request =
+indexedDB.open(
+"CameraPostsDB",
+1
+);
+
+request.onupgradeneeded =
+function(e){
+
+    db =
+    e.target.result;
+
+    db.createObjectStore(
+    "posts",
+    {
+        keyPath:"id",
+        autoIncrement:true
+    });
+
+};
+
+request.onsuccess =
+function(e){
+
+    db =
+    e.target.result;
+
+    loadPosts();
+
+};
+
+
+
+
+
+
+
+
+
+
+/* =========================
    SPLASH SCREEN
 ========================= */
 
@@ -449,6 +495,7 @@ window.addEventListener("load", () => {
     savedPosts.forEach(img => {
 
         createCameraPost(img);
+        
 
     });
 
@@ -544,3 +591,168 @@ cameraInput.addEventListener("change", e => {
     reader.readAsDataURL(file);
 
 });
+
+
+function savePost(imageURL){
+
+    const tx =
+    db.transaction(
+    ["posts"],
+    "readwrite"
+    );
+
+    const store =
+    tx.objectStore(
+    "posts"
+    );
+
+    store.add({
+        image:imageURL
+    });
+
+}
+
+function loadPosts(){
+
+    const tx =
+    db.transaction(
+    ["posts"],
+    "readonly"
+    );
+
+    const store =
+    tx.objectStore(
+    "posts"
+    );
+
+    const request =
+    store.getAll();
+
+    request.onsuccess =
+    function(){
+
+        request.result.forEach(
+        post => {
+
+            createCameraPost(
+            post.image,
+            post.id
+            );
+
+        });
+
+    };
+
+}
+
+function deletePost(id){
+
+    const tx =
+    db.transaction(
+    ["posts"],
+    "readwrite"
+    );
+
+    const store =
+    tx.objectStore(
+    "posts"
+    );
+
+    store.delete(id);
+
+}
+cameraInput.addEventListener(
+"change",
+e => {
+
+    const file =
+    e.target.files[0];
+
+    if(!file) return;
+
+    const reader =
+    new FileReader();
+
+    reader.onload =
+    function(event){
+
+        const imageURL =
+        event.target.result;
+
+        savePost(
+        imageURL
+        );
+
+        createCameraPost(
+        imageURL
+        );
+
+    };
+
+    reader.readAsDataURL(
+    file
+    );
+
+});
+
+function createCameraPost(imageURL, id = null){
+
+    const post =
+    document.createElement("article");
+
+    post.className = "post";
+
+    post.innerHTML = `
+
+    <div class="post-header">
+
+        <div class="user-info">
+
+            <img src="${imageURL}" />
+
+            <span>Camera Post</span>
+
+        </div>
+
+        <button class="delete-post">
+            <i class="fa-solid fa-trash"></i>
+        </button>
+
+    </div>
+
+    <img
+        class="post-image"
+        src="${imageURL}"
+    />
+
+    `;
+
+    feed.appendChild(post);
+
+    /* Delete Post */
+
+    post.querySelector(".delete-post")
+    .addEventListener("click", () => {
+
+        if(id){
+
+            const tx =
+            db.transaction(
+            ["posts"],
+            "readwrite"
+            );
+
+            const store =
+            tx.objectStore(
+            "posts"
+            );
+
+            store.delete(id);
+
+        }
+
+        post.remove();
+
+    });
+
+}
