@@ -481,3 +481,22 @@ img {
 .delete-post:hover{
     transform:scale(1.1);
 }
+.delete-post{
+    border:none;
+    background:none;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.delete-post{
+    border:none;
+    background:none;
+    color:#ff3040;
+    font-size:22px;
+    cursor:pointer;
+    margin-left:auto;
+}
+
+.delete-post:hover{
+    transform:scale(1.1);
+}
