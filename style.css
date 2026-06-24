@@ -470,3 +470,14 @@ img {
   cursor:pointer;
   font-size:22px;
 }
+
+.delete-post{
+    border:none;
+    background:none;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.delete-post:hover{
+    transform:scale(1.1);
+}
