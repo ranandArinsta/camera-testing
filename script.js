@@ -423,111 +423,124 @@ e => {
 
 
 /* =========================
-   CAMERA POST
+   CAMERA POSTS + SAVE + DELETE
 ========================= */
 
 const cameraBtn =
-document.getElementById(
-"cameraBtn"
-);
+document.getElementById("cameraBtn");
 
 const cameraInput =
-document.getElementById(
-"cameraInput"
-);
+document.getElementById("cameraInput");
 
 const feed =
-document.querySelector(
-".feed"
-);
+document.querySelector(".feed");
+
+/* Load Saved Posts */
+
+window.addEventListener("load", () => {
+
+    const savedPosts =
+    JSON.parse(
+        localStorage.getItem(
+            "cameraPosts"
+        )
+    ) || [];
+
+    savedPosts.forEach(img => {
+
+        createCameraPost(img);
+
+    });
+
+});
+
+/* Open Camera */
 
 cameraBtn.addEventListener(
 "click",
-function(){
+() => {
 
     cameraInput.click();
 
 });
 
-cameraInput.addEventListener(
-"change",
-function(e){
+/* Capture Image */
+cameraInput.addEventListener("change", e => {
 
-    const file =
-    e.target.files[0];
+    const file = e.target.files[0];
 
-    if(!file) return;
+    if (!file) return;
 
-    const reader =
-    new FileReader();
+    const reader = new FileReader();
 
-    reader.onload =
-    function(event){
+    reader.onload = function(ev) {
 
-        const imageURL =
-        event.target.result;
+        const img = new Image();
 
-        const post =
-        document.createElement(
-        "article"
-        );
+        img.onload = function() {
 
-        post.className =
-        "post";
+            const canvas =
+            document.createElement("canvas");
 
-        post.innerHTML = `
+            const ctx =
+            canvas.getContext("2d");
 
-        <div class="post-header">
+            const maxWidth = 600;
 
-            <div class="user-info">
+            const scale =
+            maxWidth / img.width;
 
-                <img src="${imageURL}">
+            canvas.width =
+            maxWidth;
 
-                <span>Camera Post</span>
+            canvas.height =
+            img.height * scale;
 
-            </div>
+            ctx.drawImage(
+                img,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
 
-            <i class="fa-solid fa-ellipsis more-btn"></i>
+            const imageURL =
+            canvas.toDataURL(
+                "image/jpeg",
+                0.6
+            );
 
-        </div>
+            let posts =
+            JSON.parse(
+                localStorage.getItem(
+                    "cameraPosts"
+                )
+            ) || [];
 
-        <img
-            class="post-image"
-            src="${imageURL}"
-        >
+            /* Max 10 photos */
 
-        <div class="post-actions">
+            if(posts.length >= 10){
+                posts.shift();
+            }
 
-            <i class="fa-regular fa-heart like-btn"></i>
+            posts.push(imageURL);
 
-            <div class="comment-box">
+            localStorage.setItem(
+                "cameraPosts",
+                JSON.stringify(posts)
+            );
 
-                <input
-                    type="text"
-                    class="comment-input"
-                    placeholder="Add a comment..."
-                >
+            createCameraPost(
+                imageURL
+            );
 
-                <button
-                    class="comment-btn"
-                >
-                    Send
-                </button>
+        };
 
-            </div>
-
-        </div>
-
-        `;
-
-        feed.appendChild(
-        post
-        );
+        img.src =
+        ev.target.result;
 
     };
 
-    reader.readAsDataURL(
-    file
-    );
+    reader.readAsDataURL(file);
 
 });
