@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Our Instagram</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Splash -->
+
+    <div id="splash-screen">
+      <h1 class="splash-logo">Welcome My Kiki</h1>
+    </div>
+
+    <!-- Main App -->
+
+    <div id="app">
+      <!-- Header -->
+
+      <header class="header">
+        <h2 class="logo">Our Instagram</h2>
+
+        <div class="header-icons">
+          <button class="go-back"><a href="../index.html">Go Back</a></button>
+          <i id="addPostBtn" class="fa-solid fa-plus"></i>
+          <input type="file" id="imageUploader" accept="image/*" hidden />
+          <i class="fa-regular fa-heart"></i>
+          <i class="fa-regular fa-paper-plane"></i>
+        </div>
+      </header>
+
+      <!-- Stories -->
+
+      <section class="stories">
+        <div class="story" data-name="💞" data-img="./Images/s2.png">
+          <img src="Images/s2.png" />
+
+          <p>💞</p>
+        </div>
+
+        <div class="story" data-name="🥰" data-img="./Images/s3.png">
+          <img src="Images/s3.png" />
+
+          <p>🥰</p>
+        </div>
+
+        <div class="story" data-name="💝" data-img="./Images/s7.png">
+          <img src="Images/s7.png" />
+
+          <p>💝</p>
+        </div>
+
+        <div class="story" data-name="🫂" data-img="./Images/s8.png">
+          <img src="Images/s8.png" />
+
+          <p>🫂</p>
+        </div>
+      </section>
+
+      <!-- Feed -->
+
+      <main class="feed">
+        <!-- Post 1 -->
+
+        <article class="post">
+          <div class="post-header">
+            <div class="user-info">
+              <img src="Images/s5.png" />
+
+              <span>My Kiki</span>
+            </div>
+
+            <i class="fa-solid fa-ellipsis more-btn"></i>
+          </div>
+
+          <img class="post-image" src="Images/s5.png" />
+
+          <div class="post-actions">
+            <i class="fa-regular fa-heart like-btn"></i>
+            <div class="comment-box">
+              <input
+                type="text"
+                class="comment-input"
+                placeholder="Add a comment..."
+              />
+
+              <button class="comment-btn">Send</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Post 2 -->
+
+        <article class="post">
+          <div class="post-header">
+            <div class="user-info">
+              <img src="./Images/s4.png" />
+
+              <span>Your Aaru</span>
+            </div>
+
+            <i class="fa-solid fa-ellipsis more-btn"></i>
+          </div>
+
+          <img class="post-image" src="Images/s4.png" />
+
+          <div class="post-actions">
+            <i class="fa-regular fa-heart like-btn"></i>
+            <div class="comment-box">
+              <input
+                type="text"
+                class="comment-input"
+                placeholder="Add a comment..."
+              />
+
+              <button class="comment-btn">Send</button>
+            </div>
+          </div>
+        </article>
+      </main>
+    </div>
+
+    <!-- Love Modal -->
+
+    <div id="loveModal">
+      <div class="love-box">
+        <span id="closeModal"> &times; </span>
+
+        <h2>❤️ Love Note ❤️</h2>
+
+        <p>I Love You KIki</p>
+      </div>
+    </div>
+
+    <!-- Success Popup -->
+
+    <div id="commentSuccess">✅ Comment Sent</div>
+
+    <!-- Story Viewer -->
+
+    <div id="storyViewer">
+      <span id="closeStory"> &times; </span>
+
+      <div class="story-content">
+        <img id="storyImage" />
+
+        <h3 id="storyUsername"></h3>
+      </div>
+    </div>
+
+
+  <i id="cameraBtn" class="fa-solid fa-camera"></i>
+
+<input
+    type="file"
+    id="cameraInput"
+    accept="image/*"
+    capture="environment"
+    style="display:none"
+>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,472 @@
+/* ======================
+   RESET
+====================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+#app {
+  display: none;
+}
+
+/* ======================
+   SPLASH SCREEN
+====================== */
+
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.splash-logo {
+  font-size: 42px;
+  font-family: "Lobster", cursive;
+
+  background: linear-gradient(
+    45deg,
+    #feda75,
+    #fa7e1e,
+    #d62976,
+    #962fbf,
+    #4f5bd5
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: zoom 1.5s infinite;
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(0.8);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0.8);
+  }
+}
+
+/* ======================
+   HEADER
+====================== */
+
+.header {
+  height: 60px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 15px;
+
+  border-bottom: 1px solid #262626;
+
+  position: sticky;
+  top: 0;
+
+  background: #000;
+
+  z-index: 100;
+}
+
+.logo {
+  font-size: 30px;
+
+  font-family: "Lobster", cursive;
+
+  background: linear-gradient(
+    45deg,
+    #feda75,
+    #fa7e1e,
+    #d62976,
+    #962fbf,
+    #4f5bd5
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-icons {
+  display: flex;
+  gap: 20px;
+  font-size: 22px;
+}
+
+/* ======================
+   STORIES
+====================== */
+
+.stories {
+  display: flex;
+
+  gap: 15px;
+
+  overflow-x: auto;
+
+  padding: 15px;
+
+  border-bottom: 1px solid #262626;
+}
+
+.stories::-webkit-scrollbar {
+  display: none;
+}
+
+.story {
+  min-width: 70px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.story img {
+  width: 65px;
+  height: 65px;
+
+  border-radius: 50%;
+
+  border: 3px solid #ff2d55;
+
+  object-fit: cover;
+}
+
+.story p {
+  font-size: 12px;
+
+  margin-top: 5px;
+}
+
+/* ======================
+   FEED
+====================== */
+
+.feed {
+  padding-bottom: 20px;
+}
+
+.post {
+  border-bottom: 1px solid #1c1c1c;
+  margin-bottom: 10px;
+}
+
+.post-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 12px;
+}
+
+.user-info {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.user-info img {
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+}
+
+.user-info span {
+  font-weight: 700;
+
+  background: linear-gradient(
+    45deg,
+    #feda75,
+    #fa7e1e,
+    #d62976,
+    #962fbf,
+    #4f5bd5
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.more-btn {
+  cursor: pointer;
+}
+
+.post-image {
+  width: 100%;
+  height: auto;
+  max-height: 600px;
+  object-fit: contain;
+  background: #000;
+  display: block;
+}
+
+.post-actions {
+  padding: 12px;
+
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 30px;
+}
+
+.like-btn {
+  cursor: pointer;
+}
+
+.like-btn.liked {
+  color: #ff3040;
+}
+
+/* ======================
+   COMMENT
+====================== */
+
+.comment-box {
+  display: flex;
+
+  gap: 10px;
+
+}
+
+.comment-input {
+  flex: 1;
+
+  border: none;
+
+  outline: none;
+
+  background: #111;
+
+  color: #fff;
+
+  padding: 12px;
+
+  border-radius: 20px;
+}
+
+.comment-btn {
+  border: none;
+
+  background: #0095f6;
+
+  color: #fff;
+
+  padding: 12px 18px;
+
+  border-radius: 20px;
+
+  cursor: pointer;
+}
+
+/* ======================
+   LOVE MODAL
+====================== */
+
+#loveModal {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.8);
+
+  display: none;
+
+  justify-content: center;
+
+  align-items: center;
+
+  z-index: 999999;
+}
+
+#loveModal.show {
+  display: flex;
+}
+
+.love-box {
+  width: 90%;
+
+  max-width: 320px;
+
+  background: #fff;
+
+  color: #111;
+
+  border-radius: 15px;
+
+  padding: 25px;
+
+  text-align: center;
+
+  position: relative;
+}
+
+.love-box h2 {
+  color: #ff2d55;
+
+  margin-bottom: 10px;
+}
+
+#closeModal {
+  position: absolute;
+
+  top: 10px;
+  right: 15px;
+
+  font-size: 30px;
+
+  cursor: pointer;
+}
+
+/* ======================
+   SUCCESS POPUP
+====================== */
+
+#commentSuccess {
+  position: fixed;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%) scale(0);
+
+  background: #fff;
+
+  color: #000;
+
+  padding: 18px 30px;
+
+  border-radius: 15px;
+
+  font-weight: bold;
+
+  z-index: 999999;
+
+  transition: 0.3s;
+}
+
+#commentSuccess.show {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ======================
+   STORY VIEWER
+====================== */
+
+#storyViewer {
+  position: fixed;
+
+  inset: 0;
+
+  background: #000;
+
+  display: none;
+
+  justify-content: center;
+
+  align-items: center;
+
+  z-index: 999999;
+}
+
+#storyViewer.show {
+  display: flex;
+}
+
+.story-content {
+  width: 100%;
+
+  max-width: 400px;
+
+  text-align: center;
+}
+
+#storyImage {
+  width: 90%;
+
+  margin: auto;
+
+  border-radius: 15px;
+}
+
+#storyUsername {
+  margin-top: 15px;
+
+  font-size: 22px;
+}
+
+#closeStory {
+  position: absolute;
+
+  top: 20px;
+  right: 20px;
+
+  font-size: 35px;
+
+  cursor: pointer;
+}
+
+/* ======================
+   TABLET
+====================== */
+
+@media (min-width: 768px) {
+  #app {
+    max-width: 600px;
+
+    margin: auto;
+  }
+}
+
+/* ======================
+   DESKTOP
+====================== */
+
+@media (min-width: 1024px) {
+  #app {
+    max-width: 700px;
+  }
+}
+
+
+.go-back{
+  padding: 5px 10px;
+  background:#d3dd32;
+  border: none;
+  border-radius: 25px;
+}
+.go-back a{
+  text-decoration: none;
+}
+
+#cameraBtn{
+  cursor:pointer;
+  font-size:22px;
+}
