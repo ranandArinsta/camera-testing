@@ -26,12 +26,12 @@ Welcome to my Angular 16 learning repository! This project serves as a central h
 | :--- | :--- | :---: | :--- |
 | **Phase 1** | Components, Data Binding & Directives |  | Created a dynamic todo-list |
 | **Phase 2** | Services & Dependency Injection | ⏳ | Understanding local vs. root services |
-| **Phase 3** | Routing & Navigation | ❌ | *Not started* |
-| **Phase 4** | Angular 16 Signals & RxJS | ❌ | *Not started* |
-| **Phase 5** | Forms (Template-driven & Reactive) | ❌ | *Not started* |
-| **Phase 6** | HTTP Client & API Integration | ❌ | *Not started* |
+| **Phase 3** | Routing & Navigation | ⏳ | *Not started* |
+| **Phase 4** | Angular 16 Signals & RxJS | ⏳ | *Not started* |
+| **Phase 5** | Forms (Template-driven & Reactive) | ⏳ | *Not started* |
+| **Phase 6** | HTTP Client & API Integration | ⏳ | *Not started* |
 
-> **Status Legend:** Completed | ⏳ In Progress | ❌ Not Started
+> **Status Legend:** Completed | ⏳ In Progress | ⏳ Not Started
 
 ---
 
